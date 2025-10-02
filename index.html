@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herm Clays T/A HERM ENTERPRISES (UGANDA) LIMITED</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #9e1b1b;
+            --secondary: #d6a77b;
+            --accent: #be7761;
+            --light: #f8f3e6;
+            --dark: #3e2723;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+        }
+        
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/HERM CLAYS 1.jpg') no-repeat center center/cover;
+            height: 119vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 75px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 25%;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Products Section */
+        .products {
+            background-color: #f1e9dd;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            height: 270px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: #f1e9dd;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-item i {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--primary);
+                width: 250px;
+                height: 100vh;
+                flex-direction: column;
+                padding: 2rem;
+                transition: all 0.3s;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* VS Code Instructions Section */
+        .vscode-instructions {
+            background-color: #2c2c2c;
+            color: #f8f8f8;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-family: 'Consolas', monospace;
+        }
+        
+        .vscode-instructions h3 {
+            color: #4ec9b0;
+            margin-bottom: 1rem;
+        }
+        
+        .vscode-instructions ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        
+        .vscode-instructions li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .vscode-instructions li:before {
+            content: ">";
+            color: #569cd6;
+            position: absolute;
+            left: 0;
+        }
+        
+        .vscode-instructions code {
+            background-color: #1e1e1e;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #9cdcfe;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>HERM CLAYS T/A HERM ENTERPRISES (UGANDA) LIMITED</h1>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h2>Quality Clay Products From Uganda</h2>
+            <p>Herm Clays T/A HERM ENTERPRISES (Uganda) Limited specializes in manufacturing high-quality clay products for construction and artistic applications.</p>
+            <a href="#products" class="btn">Explore Our Products</a>
+        </div>
+    </section>
+
+   
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Uganda's Premier Clay Manufacturer</h3>
+                    <p>Herm Clays  has been a leading manufacturer of quality clay products since 2005. We specialize in producing a wide range of clay bricks, tiles, and pottery items that meet the highest standards of quality and durability.</p>
+                    <p>Our company is committed to sustainable practices, utilizing locally sourced materials and eco-friendly production methods. With state-of-the-art facilities and a team of skilled artisans, we deliver products that combine traditional craftsmanship with modern technology.</p>
+                    <p>We take pride in contributing to Uganda's construction industry and supporting local communities through employment and skills development programs.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/HERM CLAYS 2.jpg" alt="Clay Production Process">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/HERM CLAYS 3.jpg" alt="Clay Bricks">
+                    </div>
+                    <div class="product-info">
+                        <h3>Construction Bricks</h3>
+                        <p>High-quality clay bricks for construction, available in various sizes and finishes. Our bricks are known for their durability and thermal properties.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Images/HERM CLAYS 4.jpg" alt="Roof Tiles">
+                    </div>
+                    <div class="product-info">
+                        <h3>Roofing Tiles</h3>
+                        <p>Beautiful and durable clay roofing tiles that provide excellent protection and enhance the aesthetic appeal of any structure.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                      <img src="Images/ROOFING TILES 2.jpg" alt="Roof Tiles">  
+                    </div>
+                    <div class="product-info">
+                        <h3>Roofing Tiles</h3>
+                        <p>Beautiful and durable clay roofing tiles that provide excellent protection and enhance the aesthetic appeal of any structure.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Images/HERM CLAYS 5.jpg" alt="Pottery Items">
+                    </div>
+                    <div class="product-info">
+                        <h3>Pottery & Decor</h3>
+                        <p>Artistic clay pottery and decorative items handcrafted by skilled artisans, perfect for home and garden decoration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Images/FIRE BRICKS.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/FLATTOP RIGES.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Half Bricks.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/INTERLOCKING BLOCKS.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Maxpans.jpg" alt="Clay Product">   
+                </div>
+                <div class="gallery-item">
+                    <img src="images/ROOFING TILES.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/ROMAN TILES.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/SMOOTH$GROOVED SELECTED BRICKS.jpg" alt="Factory">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/PORTUGESE TILES.jpg" alt="Factory">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/SPINA.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/TORINNO.jpg" alt="Clay Product">
+                </div>
+                 <div class="gallery-item">
+                    <img src="images/Z-VENT.jpg" alt="Clay Product">
+                 </div>
+                <div class="gallery-item">
+                     <img src="images/VENEZIA.jpg" alt="Clay Product">
+                </div> 
+                <div class="gallery-item">
+                    <img src="images/QUARRY TILES.jpg" alt="Clay Product">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/ROMAN TILES.jpg" alt="Clay Product">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="info-item">
+                        <i>📍</i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Factory: nakawuka_kasanje road, wakiso, uganda</p>
+                            <p>Showroom: Seguku Entebbe Road </p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i>📞</i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+256 702460280</p>
+                            <p>+256758242890</p>   
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i>✉️</i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hermenterprisesltd@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>HERM CLAYS T/A HERM ENTERPRISES UGANDA LIMITED</h3>
+                    <p>Quality clay products manufacturer serving Uganda and beyond since 2005.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Construction Bricks</a></li>
+                        <li><a href="#">Roofing Tiles</a></li>
+                        <li><a href="#">Pottery Items</a></li>
+                        <li><a href="#">Decorative Pieces</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>TW</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>LI</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Herm Clays T/A HERM ENTERPRISES Uganda Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
